@@ -10,7 +10,6 @@
 #include <openssl/conf.h>
 
 #include "IPv6_HvE_verification.h"
-#include "utils.h"
 
 using namespace std;
 

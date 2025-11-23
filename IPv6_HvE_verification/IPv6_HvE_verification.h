@@ -56,10 +56,44 @@ bool insert_single_row_at_index(
 //数据文件引入
 vector<uint8_t> readFileToBinaryStream(const string& filepath);
 
+
 //一维列编码函数
 vector<uint8_t> generate_column_marker_row(size_t cols_count);
+
+//GCM 加密和MAC生成函数
+int aes_256_gcm_encrypt(
+    const vector<uint8_t>& plaintext,
+    const uint8_t* key,
+    const uint8_t* iv,
+    const vector<uint8_t>& aad,
+    vector<uint8_t>& ciphertext,
+    uint8_t* tag);
+
+//二维矩阵乱序函数
+vector<size_t> column_permutation(vector<vector<uint8_t>>& matrix);
+//二维矩阵乱序还原函数
+void undo_column_permutation(
+    vector<vector<uint8_t>>& matrix,
+    const vector<uint8_t>& reference_row);
 
 //输出演示模块--可删除
 void print_data_block(const vector<vector<uint8_t>>& data_block,
     size_t max_rows_to_print,
     size_t max_cols_to_print);
+
+/**
+ * @brief 计算给定字符串的 SHA-256 哈希值，并输出原始字符串及其哈希值。
+ * * @param input 要进行哈希的字符串。
+ * @return string SHA-256 哈希值的十六进制表示。
+ */
+vector<uint8_t> calculate_sha256_binary(const vector<uint8_t>& input);
+
+//AES_256_密钥生成函数
+vector<uint8_t> generate_aes_256_key_openssl();
+
+//AES_256_iv生成函数
+vector<uint8_t> generate_secure_iv(size_t size);
+
+//iPv6封装包-------------------------------------------------------------------
+
+//iPv6封装包-------------------------------------------------------------------

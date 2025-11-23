@@ -1,4 +1,5 @@
-#include "utils.h"
+#include "IPv6_HvE_verification.h"
+
 #include <iostream>
 #include <sstream>
 #include <iomanip>
@@ -13,33 +14,16 @@
 
 using namespace std;
 
-string calulate_and_print_sha256(const string& input) {
-	cout << "----------------------------------------" << endl;
-	cout << "Input String: \"" << input << "\"" << endl;
+vector<uint8_t> calculate_sha256_binary(const vector<uint8_t>& input) {
+    cout << "----------------------------------------" << endl;
+    cout << "Input Data (vector<uint8_t]): " << input.size() << " bytes" << endl;
 
-	unsigned char hash[SHA256_DIGEST_LENGTH];
+    vector<uint8_t> hash(SHA256_DIGEST_LENGTH); // 32 ×Ö½Ú
 
-	if (input.empty()) {
-		SHA256(nullptr, 0, hash);
-	}
-	else {
-		SHA256(
-			reinterpret_cast<const unsigned char*>(input.c_str()),
-			input.length(),
-			hash
-		);
-	}
-	//cout << endl;
-	//cout << "Binary_data:" << hash << endl;
+    SHA256(input.data(), input.size(), hash.data());
 
-	stringstream ss;
-	for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
-		ss << hex << setw(2) << setfill('0') << static_cast<int>(hash[i]);
-	}
-	string hash_value = ss.str();
+    cout << "SHA-256 (binary, 32 bytes) calculated." << endl;
+    cout << "----------------------------------------" << endl;
 
-	cout << "SHA-256 Hash:" << hash_value << endl;
-	cout << "----------------------------------------" << endl;
-	
-	return hash_value;
+    return hash;
 }

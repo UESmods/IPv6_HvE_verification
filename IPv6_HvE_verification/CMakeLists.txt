@@ -11,7 +11,7 @@ add_executable (IPv6_HvE_verification
     "IPv6_HvE_verification.cpp"
     "IPv6_HvE_verification.h"
     "utils.cpp"
-    "utils.h"
+    
     "2D_chessboard.cpp"
     "Pdata.cpp"
     "2D_to_1D.cpp"
@@ -21,7 +21,7 @@ add_executable (IPv6_HvE_verification
     "IDonin.cpp"
     "IDrrg.cpp"
     "Datadismantle.cpp"
-)
+ "iPv6PE.cpp"  "ECC_E.cpp" "iPv6EH.cpp" "ECC_Key.cpp" "AES_256_MAC.cpp" "CDA.cpp")
 
 # 设置 C++ 标准
 if (CMAKE_VERSION VERSION_GREATER 3.12)
